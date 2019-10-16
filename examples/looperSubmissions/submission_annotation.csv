@@ -1,0 +1,5 @@
+sample_name,protocol,organism,read1,read2,read_length,read_type,status
+12_315,ATAC,human,12_315_R1,12_315_R2,50,paired,CD
+208,ATAC,human,208_R1,208_R2,50,paired,CD
+216,ATAC,human,216_R1,216_R2,50,paired,NIBD
+185,ATAC,human,185_R1,185_R2,50,paired,NIBD

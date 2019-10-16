@@ -1,0 +1,41 @@
+
+# This project config file describes your project. See looper docs for details.
+name: pepatac_example # The name that summary files will be prefaced with
+
+metadata:  # relative paths are relative to this config file
+  sample_annotation: submission_annotation.csv  # sheet listing all samples in the project. Make sure this is in the same directory as this config file.
+  output_dir: "/path/to/temp/out/directory"  # ABSOLUTE PATH to the parent, shared space where project results go
+  pipeline_interfaces: "/proj/fureylab/pipelines/ATAC/pepatac/pipeline_interface.yaml"  # ABSOLUTE PATH to the directory where looper will find the pipeline repository
+
+# in your sample_annotation, columns with these names will be populated as described 
+# in the data_sources section below
+derived_columns: [read1, read2]  
+
+data_sources:  # This section describes paths to your data
+  # specify the ABSOLUTE PATH of input files using variable path expressions
+  # These keys then correspond to values in your sample annotation columns.
+  # Variables specified using brackets are populated from sample_annotation columns. 
+  # Variable syntax: {column_name}. For example, use {sample_name} to populate
+  # the file name with the value in the sample_name column for each sample.
+  # example_data_source: "/path/to/data/{sample_name}_R1.fastq.gz"
+  12_315_R1: /proj/fureylab/data/ATAC/human/colon_tissue/CD_uninflamed/12_315/fastq/*R1*
+  12_315_R2: /proj/fureylab/data/ATAC/human/colon_tissue/CD_uninflamed/12_315/fastq/*R2*
+  208_R1: /proj/fureylab/data/ATAC/human/colon_tissue/CD_uninflamed/208/fastq/*R1*
+  208_R2: /proj/fureylab/data/ATAC/human/colon_tissue/CD_uninflamed/208/fastq/*R2*
+  216_R1: /proj/fureylab/data/ATAC/human/colon_tissue/nonIBD/216/fastq/*R1*
+  216_R2: /proj/fureylab/data/ATAC/human/colon_tissue/nonIBD/216/fastq/*R2*
+  185_R1: /proj/fureylab/data/ATAC/human/colon_tissue/nonIBD/185/fastq/*R1*
+  185_R2: /proj/fureylab/data/ATAC/human/colon_tissue/nonIBD/185/fastq/*R2*
+
+implied_columns:
+  organism:
+    human:
+      genome: hg19
+      macs_genome_size: "hs"
+      prealignments: "rCRSd human_repeats"
+      blacklist: "/proj/fureylab/bin/pipelines/ATAC/combined_blacklist.bed"
+      TSS_name: "/proj/fureylab/bin/pipelines/ATAC/hg19.tss.refseq.housekeeping.all.bed"    
+    mouse:
+      genome: mm10
+      macs_genome_size: "mm"
+      prealignments: "mouse_chrM2x"
